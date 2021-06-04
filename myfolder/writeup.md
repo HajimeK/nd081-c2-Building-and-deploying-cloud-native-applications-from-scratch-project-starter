@@ -21,13 +21,13 @@ In the portal.
 
 ### The finished server-side application contains working Azure Functions for HTTP Triggers in Python.
 
-  *createAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/createadvertisement
-  *deleteAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/deleteadvertisement
-  *getAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/getadvertisement
-  *getAdvertisements*: https://funcazuredevprj2.azurewebsites.net/api/getadvertisements
-  *getPost*: https://funcazuredevprj2.azurewebsites.net/api/getpost
-  *getPosts*: https://funcazuredevprj2.azurewebsites.net/api/getposts
-  *updateAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/updateadvertisement
+  *createAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/createadvertisement <p>
+  *deleteAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/deleteadvertisement <p>
+  *getAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/getadvertisement <p>
+  *getAdvertisements*: https://funcazuredevprj2.azurewebsites.net/api/getadvertisements <p>
+  *getPost*: https://funcazuredevprj2.azurewebsites.net/api/getpost <p>
+  *getPosts*: https://funcazuredevprj2.azurewebsites.net/api/getposts <p>
+  *updateAdvertisement*: https://funcazuredevprj2.azurewebsites.net/api/updateadvertisement <p>
 
 
 Functions End Points
