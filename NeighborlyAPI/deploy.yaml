@@ -1,0 +1,195 @@
+data:
+  FUNCTIONS_WORKER_RUNTIME: cHl0aG9u
+apiVersion: v1
+kind: Secret
+metadata:
+  name: azuredevprj2akscluster
+---
+data:
+  host.master: M2p5bnhWdC9uc1RDNGFJQmZxVXBtOVN4dTBVWVpNMjBpQUFBWXhuYWV3SVAvV0NwY0lua293PT0=
+  host.function.default: OGtDNm00cVRBSnBmSmo5M0hZQTNtb2hvZ0h6a2lHT0FmMThlMXFGVkRSOXRJWVZlVC9jUWV3PT0=
+  host.systemKey.default: SkpDTktBeVczb052ZEpoN1RhMzZSc2Eyd3JwdG1CT1RTYVFoRXpjaVo0dVhYSWFHc2ltRVVnPT0=
+  functions.createadvertisement.default: czVmcTBSSWZpZENLZWpDMFB2V01pM3d2L29wMjNnSmRRcjg2Rm5yaHM3Zzc4QXlSM2dySEFnPT0=
+  functions.deleteadvertisement.default: RkdSVmNQcEcvRTB2akZaajJQVTJ0b2pTclhmRVhYRFhZMEVSTkdGNm5PVXdWd2xWM3VrUjlRPT0=
+  functions.getadvertisement.default: TnhqS1VaeGdBTGM5NDJ3cDJ6bFBKWGRKeXpEV2ZaOVJMemg2VmFVc2FWUExlYXZkV2hHYnNnPT0=
+  functions.getadvertisements.default: TGtQYkdlVXV4cnBvOG9jWmRRTWlhaVF1blVmS05HTzc5YjByaW4ya2tCemNFMzY0TFZWWXNBPT0=
+  functions.getpost.default: RWZLTXBWSGJhY0hNVHpGUjc3UlJmcW1wMk9rYUFQNEJrQU5OYnNtd01tWkRMYkY5VjBTTndRPT0=
+  functions.getposts.default: T2tqM3l2bnRKeGNndTdjdHRCMGNmaWFtbjZ6SVMxU1QyYUxibEQ0b3FIbzRhT1ZyUmNVTmdRPT0=
+  functions.updateadvertisement.default: T1RYMWJFT3piSFpyTHhTWUtLbnZEendxM083YVhCLzM5U1d4bTFCM2t3ZmlSME5tNFA1V2hnPT0=
+apiVersion: v1
+kind: Secret
+metadata:
+  name: func-keys-kube-secret-azuredevprj2akscluster
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: azuredevprj2akscluster-function-keys-identity-svc-act
+---
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - secrets
+  - configMaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: functions-keys-manager-role
+---
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: functions-keys-manager-role
+subjects:
+- kind: ServiceAccount
+  name: azuredevprj2akscluster-function-keys-identity-svc-act
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: azuredevprj2akscluster-function-keys-identity-svc-act-functions-keys-manager-rolebinding
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azuredevprj2akscluster-http
+spec:
+  selector:
+    app: azuredevprj2akscluster-http
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azuredevprj2akscluster-http
+  labels:
+    app: azuredevprj2akscluster-http
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azuredevprj2akscluster-http
+  template:
+    metadata:
+      labels:
+        app: azuredevprj2akscluster-http
+    spec:
+      containers:
+      - name: azuredevprj2akscluster-http
+        image: azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
+        ports:
+        - containerPort: 80
+        env:
+        - name: AzureFunctionsJobHost__functions__0
+          value: createAdvertisement
+        - name: AzureFunctionsJobHost__functions__1
+          value: deleteAdvertisement
+        - name: AzureFunctionsJobHost__functions__2
+          value: getAdvertisement
+        - name: AzureFunctionsJobHost__functions__3
+          value: getAdvertisements
+        - name: AzureFunctionsJobHost__functions__4
+          value: getPost
+        - name: AzureFunctionsJobHost__functions__5
+          value: getPosts
+        - name: AzureFunctionsJobHost__functions__6
+          value: updateAdvertisement
+        - name: AzureWebJobsSecretStorageType
+          value: kubernetes
+        - name: AzureWebJobsKubernetesSecretName
+          value: secrets/func-keys-kube-secret-azuredevprj2akscluster
+        envFrom:
+        - secretRef:
+            name: azuredevprj2akscluster
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        startupProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+      serviceAccountName: azuredevprj2akscluster-function-keys-identity-svc-act
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azuredevprj2akscluster
+  labels:
+    app: azuredevprj2akscluster
+spec:
+  selector:
+    matchLabels:
+      app: azuredevprj2akscluster
+  template:
+    metadata:
+      labels:
+        app: azuredevprj2akscluster
+    spec:
+      containers:
+      - name: azuredevprj2akscluster
+        image: azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
+        env:
+        - name: AzureFunctionsJobHost__functions__0
+          value: eventHubTrigger
+        envFrom:
+        - secretRef:
+            name: azuredevprj2akscluster
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        startupProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+      serviceAccountName: azuredevprj2akscluster-function-keys-identity-svc-act
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: azuredevprj2akscluster
+  labels: {}
+spec:
+  scaleTargetRef:
+    name: azuredevprj2akscluster
+  triggers:
+  - type: eventgridtrigger
+    metadata:
+      direction: in
+      eventHubName: testhub
+      connection: Endpoint=sb://udacityneighborly.servicebus.windows.net/;SharedAccessKeyName=allpolicy;SharedAccessKey=LOxUOkN13xN038T1VoSsmaTt4s7vq/+VCzduS5/nH9A=;EntityPath=testhub
+---
+

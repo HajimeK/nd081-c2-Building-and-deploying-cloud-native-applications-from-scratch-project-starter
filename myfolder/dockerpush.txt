@@ -1,0 +1,19 @@
+cd nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter/
+cd NeighborlyAPI/
+func init --docker-only --python
+sudo docker build -t azuredevprj2docker .
+sudo docker images
+sudo docker tag azuredevprj2docker azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
+az login
+sudo az acr login --name azuredevprj2funcreg
+sudo az acr check-health
+sudo az acr login --name azuredevprj2funcreg
+sudo docker push azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
+ 1738  sudo func kubernetes deploy --name azuredevprj2akscluster --image-name azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1 --dry-run --python > deploy.yaml
+ 1739  sudo func kubernetes deploy --name azuredevprj2akscluster --image-name azuredevprj2funcreg.azurecr.io/azuredevprj2docker --polling-interval 3 --cooldown-period 5 --python
+ 1740  kubectl apply -f deploy.yml
+ 1741  ls
+ 1742  kubectl apply -f deploy.yaml
+ 1743  kubectl get service --watch
+ 1744  kubectl get service
+ 1745  kubectl config get-contexts
