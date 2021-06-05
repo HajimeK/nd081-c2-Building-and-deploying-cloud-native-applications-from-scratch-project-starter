@@ -3,28 +3,28 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: azuredevprj2akscluster
+  name: azuredevprj2aks
 ---
 data:
-  host.master: M2p5bnhWdC9uc1RDNGFJQmZxVXBtOVN4dTBVWVpNMjBpQUFBWXhuYWV3SVAvV0NwY0lua293PT0=
-  host.function.default: OGtDNm00cVRBSnBmSmo5M0hZQTNtb2hvZ0h6a2lHT0FmMThlMXFGVkRSOXRJWVZlVC9jUWV3PT0=
-  host.systemKey.default: SkpDTktBeVczb052ZEpoN1RhMzZSc2Eyd3JwdG1CT1RTYVFoRXpjaVo0dVhYSWFHc2ltRVVnPT0=
-  functions.createadvertisement.default: czVmcTBSSWZpZENLZWpDMFB2V01pM3d2L29wMjNnSmRRcjg2Rm5yaHM3Zzc4QXlSM2dySEFnPT0=
-  functions.deleteadvertisement.default: RkdSVmNQcEcvRTB2akZaajJQVTJ0b2pTclhmRVhYRFhZMEVSTkdGNm5PVXdWd2xWM3VrUjlRPT0=
-  functions.getadvertisement.default: TnhqS1VaeGdBTGM5NDJ3cDJ6bFBKWGRKeXpEV2ZaOVJMemg2VmFVc2FWUExlYXZkV2hHYnNnPT0=
-  functions.getadvertisements.default: TGtQYkdlVXV4cnBvOG9jWmRRTWlhaVF1blVmS05HTzc5YjByaW4ya2tCemNFMzY0TFZWWXNBPT0=
-  functions.getpost.default: RWZLTXBWSGJhY0hNVHpGUjc3UlJmcW1wMk9rYUFQNEJrQU5OYnNtd01tWkRMYkY5VjBTTndRPT0=
-  functions.getposts.default: T2tqM3l2bnRKeGNndTdjdHRCMGNmaWFtbjZ6SVMxU1QyYUxibEQ0b3FIbzRhT1ZyUmNVTmdRPT0=
-  functions.updateadvertisement.default: T1RYMWJFT3piSFpyTHhTWUtLbnZEendxM083YVhCLzM5U1d4bTFCM2t3ZmlSME5tNFA1V2hnPT0=
+  host.master: Yk1Ia1pjWjZXa2VnWDVuVkJMcVIyYVFGNEJhUXVDN1VRbTkyL1JSaDNVRjBPd3JvQmJHQUx3PT0=
+  host.function.default: a2hRMEhGM0g4d3dOSmVJWFljOHNwQkpKWkNqN3BCWG5icEpSUU5vTkJob1hGSFp4c2NmNkZ3PT0=
+  host.systemKey.default: WnoyRy9sakRPamdBWVdxYUhqS3AxUjJMYzRDTmpzQmF5M2pCcUJxM3ZOU0J4Vm9IZnlrMzRBPT0=
+  functions.createadvertisement.default: eU5ZUldpcW85NURpMlRuOVduazNuem54Y2ZOY0YxamxFdHpkU2pnV3JRY0I0VVh1MEVVQmpRPT0=
+  functions.deleteadvertisement.default: YWxjYjhHRlRMMTRFTWxrMndhSGFTMXJzWE4xY0kxa3RZMFNBTkhkNHprVnlxcVNubktTVWJnPT0=
+  functions.getadvertisement.default: bFFYRWw1UXlCQW1UYmRDbW92OWpIaVNyTzYxY095RDkvWHlQcVFEOWFEZ3d3MXdKOTBwNk1nPT0=
+  functions.getadvertisements.default: bDh6SmJzcWpJNFZuOUtEQ0gyZFV3YVB4TWQ2emRSejRnY1U2SThKdjB2d0tuc1VEOEJ6YmhRPT0=
+  functions.getpost.default: UUJTYU5zM1MxTWtWVnRraHhqNmo1cmhzbWg2MENPaFRWUW1FbnRtVENRUGNTbHg2UTdZVVV3PT0=
+  functions.getposts.default: RzNPM1pNajhKRWNBUWE5QmFzdW9EZTdQSGVWWnFSYnNGYXVDYXZONjhQa2NIcWFoeGhVM2xRPT0=
+  functions.updateadvertisement.default: bmFIVFY5T1lPU05JYUFXcndQblpNdjFTLzBGWXBuZW1XWmE0ZkEybWgxMjMwMmR5SnhJNWNRPT0=
 apiVersion: v1
 kind: Secret
 metadata:
-  name: func-keys-kube-secret-azuredevprj2akscluster
+  name: func-keys-kube-secret-azuredevprj2aks
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: azuredevprj2akscluster-function-keys-identity-svc-act
+  name: azuredevprj2aks-function-keys-identity-svc-act
 ---
 rules:
 - apiGroups:
@@ -51,19 +51,19 @@ roleRef:
   name: functions-keys-manager-role
 subjects:
 - kind: ServiceAccount
-  name: azuredevprj2akscluster-function-keys-identity-svc-act
+  name: azuredevprj2aks-function-keys-identity-svc-act
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: azuredevprj2akscluster-function-keys-identity-svc-act-functions-keys-manager-rolebinding
+  name: azuredevprj2aks-function-keys-identity-svc-act-functions-keys-manager-rolebinding
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: azuredevprj2akscluster-http
+  name: azuredevprj2aks-http
 spec:
   selector:
-    app: azuredevprj2akscluster-http
+    app: azuredevprj2aks-http
   ports:
   - protocol: TCP
     port: 80
@@ -73,21 +73,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: azuredevprj2akscluster-http
+  name: azuredevprj2aks-http
   labels:
-    app: azuredevprj2akscluster-http
+    app: azuredevprj2aks-http
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: azuredevprj2akscluster-http
+      app: azuredevprj2aks-http
   template:
     metadata:
       labels:
-        app: azuredevprj2akscluster-http
+        app: azuredevprj2aks-http
     spec:
       containers:
-      - name: azuredevprj2akscluster-http
+      - name: azuredevprj2aks-http
         image: azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
         ports:
         - containerPort: 80
@@ -109,10 +109,10 @@ spec:
         - name: AzureWebJobsSecretStorageType
           value: kubernetes
         - name: AzureWebJobsKubernetesSecretName
-          value: secrets/func-keys-kube-secret-azuredevprj2akscluster
+          value: secrets/func-keys-kube-secret-azuredevprj2aks
         envFrom:
         - secretRef:
-            name: azuredevprj2akscluster
+            name: azuredevprj2aks
         readinessProbe:
           failureThreshold: 3
           periodSeconds: 10
@@ -131,32 +131,32 @@ spec:
             path: /
             port: 80
             scheme: HTTP
-      serviceAccountName: azuredevprj2akscluster-function-keys-identity-svc-act
+      serviceAccountName: azuredevprj2aks-function-keys-identity-svc-act
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: azuredevprj2akscluster
+  name: azuredevprj2aks
   labels:
-    app: azuredevprj2akscluster
+    app: azuredevprj2aks
 spec:
   selector:
     matchLabels:
-      app: azuredevprj2akscluster
+      app: azuredevprj2aks
   template:
     metadata:
       labels:
-        app: azuredevprj2akscluster
+        app: azuredevprj2aks
     spec:
       containers:
-      - name: azuredevprj2akscluster
+      - name: azuredevprj2aks
         image: azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
         env:
         - name: AzureFunctionsJobHost__functions__0
           value: eventHubTrigger
         envFrom:
         - secretRef:
-            name: azuredevprj2akscluster
+            name: azuredevprj2aks
         readinessProbe:
           failureThreshold: 3
           periodSeconds: 10
@@ -175,16 +175,16 @@ spec:
             path: /
             port: 80
             scheme: HTTP
-      serviceAccountName: azuredevprj2akscluster-function-keys-identity-svc-act
+      serviceAccountName: azuredevprj2aks-function-keys-identity-svc-act
 ---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: azuredevprj2akscluster
+  name: azuredevprj2aks
   labels: {}
 spec:
   scaleTargetRef:
-    name: azuredevprj2akscluster
+    name: azuredevprj2aks
   triggers:
   - type: eventgridtrigger
     metadata:

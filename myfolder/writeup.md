@@ -1,4 +1,4 @@
-
+# Building and Deploying Cloud Native App
 ## Serverless Functions
 ### A MongoDB database in Azure CosmosDB service is created and initialized with the sample data provided.
 
@@ -112,5 +112,6 @@ Container Registry
 
 ### The code demonstrates an automated pipeline to spin Kubernetes services in Azure.
 
-![](img/2021-06-04-13-10-43.png)
+![](img/2021-06-05-16-41-52.png)
 
+![](img/2021-06-05-16-37-21.png)
