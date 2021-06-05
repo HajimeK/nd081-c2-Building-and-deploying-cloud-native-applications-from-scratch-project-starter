@@ -61,7 +61,7 @@ Accessing the URL (https://azuredevprj2webapp.azurewebsites.net) to get the foll
 ### The student demonstrates mastery in using Azure Logic App Designer to create a trigger.
 
 Definitions and test run status
-![](2021-06-04-15-20-13.png)
+![](img/2021-06-04-15-20-13.png)
 
 The Logic App Designer
 ![](img/2021-06-04-15-19-14.png)
@@ -71,13 +71,30 @@ Mail was successfully sent
 
 ### The student should be able to create a custom event grid topic and publish the topic.
 
+##### Event Hub
+
 Under name space *azredevprj2ehns*, an Event Hub *azuredevprj2eh* is created.
 ![](img/2021-06-04-13-32-33.png)
 
-### The student should be able to add the connection string of the event hub to the Azure Function.
 
 See above in the Shared access policies.
 *azredevprj2ehpolicy* is added.
+
+##### Event Grid
+
+
+
+### The student should be able to add the connection string of the event hub to the Azure Function.
+
+
+![](img/2021-06-05-12-59-00.png)
+
+![](img/2021-06-05-13-04-10.png)
+
+![](img/2021-06-05-13-02-07.png)
+
+![](img/2021-06-05-13-12-25.png)
+
 
 ## Deploying Your Application
 

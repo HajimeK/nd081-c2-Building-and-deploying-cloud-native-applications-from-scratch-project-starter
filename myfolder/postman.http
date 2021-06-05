@@ -1,1 +1,20 @@
-POST https://prod-00.centralus.logic.azure.com:443/workflows/18360b364bda4d8396b9e02c1846199c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=icuuivgiSEkNJUYu8sfOEU5IJgQAAX3YOkYo-UJgdrc
+POST https://azuredevprj2topic.centralus-1.eventgrid.azure.net/api/events
+Content-Type: application/json
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+aeg-sas-key: <key>
+
+[
+ {
+     "id": "12345",
+     "eventType": "myEventTest",
+     "subject": "pubSubTest/event",
+     "eventTime": "2021-06-05T12:00:00+00:00",
+     "data": {
+         "name": "Your Name Here"
+     },
+     "dataVersion": "1.0",
+     "metadataVersion": "1",
+     "topic": "/subscriptions/{Subscription ID}/resourceGroups/rg_azuredevprj2/providers/Microsoft.EventGrid/topics/azuredevprj2topic"
+ }
+]
