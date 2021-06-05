@@ -1,5 +1,3 @@
-set RESOURCE_GROUP=rg_azuredevprj2
-set MY_LOCATION=centralus
 az group create --location centralus --name rg_azuredevprj2 --subscription "Azure subscription 1"
 az group exists --name rg_azuredevprj2
 az storage account create --name stracazuredevprj2 --resource-group rg_azuredevprj2 --location centralus --sku Standard_LRS
@@ -11,20 +9,15 @@ az cosmosdb mongodb database create --name cosmosazuredevprj2 --database-name co
 az cosmosdb mongodb collection create --resource-group rg_azuredevprj2 --name advertisements --account-name cosmosazuredevprj2 --database-name cosmosazuredevprj2 --throughput 400
 az cosmosdb mongodb collection create --resource-group rg_azuredevprj2 --name posts --account-name cosmosazuredevprj2 --database-name cosmosazuredevprj2 --throughput 400
 az cosmosdb keys list --name cosmosazuredevprj2 --resource-group rg_azuredevprj2 --type connection-strings
-az functionapp deployment source config-zip --resource-group rg_azuredevprj2 --name funcazuredevprj2 --src "C:\Users\y509541\git\nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter\NeighborlyAPI.zip"
-
-az aks create --name azuredevaks --resource-group rg_azuredevprj2 --node-count 1 --generate-ssh-keys --location centralus 
-az aks get-credentials --name azuredevaks --resource-group rg_azuredevprj2
-
-az acr create --resource-group rg_azuredevprj2 --name azuredevprj2funcreg --sku Basic
-func init --docker-create --python
-docker build <folder that includes Dockerfile>
-
 
 cd git
 cd nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter/
 cd NeighborlyAPI/
-docker build -t azuredevprj2docker .
+
+az aks create --name azuredevprj2aks --resource-group rg_azuredevprj2 --node-count 1 --generate-ssh-keys --location centralus 
+az aks get-credentials --name azuredevprj2aks --resource-group rg_azuredevprj2
+az acr create --resource-group rg_azuredevprj2 --name azuredevprj2funcreg --sku Basic
+func init --docker-create --python
 sudo docker build -t azuredevprj2docker .
 sudo docker images
 sudo docker tag azuredevprj2docker azuredevprj2funcreg.azurecr.io/azuredevprj2docker:v1
