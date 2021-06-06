@@ -73,12 +73,48 @@ Mail was successfully sent
 
 ##### Event Hub
 
-Under name space *azredevprj2ehns*, an Event Hub *azuredevprj2eh* is created.
-![](img/2021-06-04-13-32-33.png)
+To evaluate the feature, I have run the followings to set up the services.
+```
+az eventhubs namespace create --resource-group rg_azuredevprj2 --name azuredevprj2ehns --location centralus --sku Standard --maximum-throughput-units 1 --enable-auto-inflate true
+az eventhubs eventhub create --resource-group rg_azuredevprj2 --namespace-name azuredevprj2ehns --name azuredevprjeh --message-retention 1 --partition-count 1
+az storage account create --name stracazuredevprj2 --resource-group rg_azuredevprj2 --location centralus --sku Standard_LRS
+az functionapp create --functions-version 3 --resource-group rg_azuredevprj2 --name funcazuredevprj2 --storage-account stracazuredevprj2 --os-type Linux --consumption-plan-location centralus --runtime python --runtime-version 3.8
+```
+
+Following is the screenshot from the event hub, after sending some events.
+
+![](img/2021-06-06-23-54-32.png)
 
 
-See above in the Shared access policies.
-*azredevprj2ehpolicy* is added.
+As below, created a fundtion app to be triggered by even hub.
+The connection string is set as an environment variable *azuredevprj2ehns_RootManageSharedAccessKey_EVENTHUB* in the application settings in the function app as below.
+
+![](img/2021-06-07-00-04-06.png)
+
+This can be referenced as below on the *connection* part in the *function.json*.
+
+```
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "events",
+      "direction": "in",
+      "eventHubName": "azuredevprjeh",
+      "connection": "azuredevprj2ehns_RootManageSharedAccessKey_EVENTHUB",
+      "cardinality": "many",
+      "consumerGroup": "$Default",
+      "dataType": "binary"
+    }
+  ]
+}
+```
+
+Following is the function triggered by the events in the event hub.
+
+![](img/2021-06-07-00-00-48.png)
+
 
 ##### Event Grid
 
