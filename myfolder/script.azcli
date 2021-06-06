@@ -10,6 +10,11 @@ az cosmosdb mongodb collection create --resource-group rg_azuredevprj2 --name ad
 az cosmosdb mongodb collection create --resource-group rg_azuredevprj2 --name posts --account-name cosmosazuredevprj2 --database-name cosmosazuredevprj2 --throughput 400
 az cosmosdb keys list --name cosmosazuredevprj2 --resource-group rg_azuredevprj2 --type connection-strings
 
+az eventhubs namespace create --resource-group rg_azuredevprj2 --name azuredevprj2ehns --location centralus --sku Standard --maximum-throughput-units 1 --enable-auto-inflate true
+az eventhubs eventhub create --resource-group rg_azuredevprj2 --namespace-name azuredevprj2ehns --name azuredevprjeh --message-retention 1 --partition-count 1
+az storage account create --name stracazuredevprj2 --resource-group rg_azuredevprj2 --location centralus --sku Standard_LRS
+az functionapp create --functions-version 3 --resource-group rg_azuredevprj2 --name funcazuredevprj2 --storage-account stracazuredevprj2 --os-type Linux --consumption-plan-location centralus --runtime python --runtime-version 3.8
+
 cd git
 cd nd081-c2-Building-and-deploying-cloud-native-applications-from-scratch-project-starter/
 cd NeighborlyAPI/
